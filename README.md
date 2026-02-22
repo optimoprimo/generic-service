@@ -1,0 +1,1 @@
+Aplicacion Generica para poder aprender a usar openshift
