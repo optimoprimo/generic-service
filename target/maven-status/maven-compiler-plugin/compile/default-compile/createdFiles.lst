@@ -1,2 +1,4 @@
+org/acme/ServiceClient.class
 org/acme/Main.class
-org/acme/ServiceB.class
+org/acme/LivenessCheck.class
+org/acme/ReadinessCheck.class

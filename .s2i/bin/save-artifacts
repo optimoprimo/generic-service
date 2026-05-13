@@ -1,0 +1,10 @@
+#!/bin/bash
+set -e
+
+# Save the local Maven repository for use in the next incremental build
+if [ -d "$HOME/.m2/repository" ]; then
+  echo "---> Saving Maven repository..."
+  pushd "$HOME" > /dev/null
+  tar cf - .m2
+  popd > /dev/null
+fi

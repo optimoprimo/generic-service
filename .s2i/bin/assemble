@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+# Restore cached Maven dependencies from a previous build (incremental builds)
+if [ -d /tmp/artifacts/.m2 ]; then
+  echo "---> Restoring Maven cache..."
+  cp -rf /tmp/artifacts/.m2 "$HOME/"
+fi
+
+echo "---> Building Quarkus application..."
+mvn package -DskipTests -Dmaven.repo.local="$HOME/.m2/repository"
+
+echo "---> Copying artifacts to /deployments..."
+cp -rf target/quarkus-app/lib/   /deployments/lib/
+cp -f  target/quarkus-app/*.jar  /deployments/
+cp -rf target/quarkus-app/app/   /deployments/app/
+cp -rf target/quarkus-app/quarkus/ /deployments/quarkus/
+
+echo "---> Build complete."
